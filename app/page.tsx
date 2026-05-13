@@ -81,11 +81,7 @@ export default function Dashboard() {
   const handleAdd = () => {
     if (!text.trim()) {
       setError("Il task non può essere vuoto o solo spazi");
-      setErrorVisible(true);
 
-      setTimeout(() => {
-        setErrorVisible(false);
-      }, 2500);
 
       setTimeout(() => {
         setError(null);
