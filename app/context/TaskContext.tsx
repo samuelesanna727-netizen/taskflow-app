@@ -32,13 +32,11 @@ export function TaskProvider({ children }: { children: React.ReactNode }) {
   // Caricamento iniziale dal localStorage
   useEffect(() => {
     const saved = localStorage.getItem("taskflow-storage");
+
     if (saved) {
-      try {
-        setTasks(JSON.parse(saved));
-      } catch (e) {
-        console.error("Errore nel caricamento dei task:", e);
-      }
+      setTasks(JSON.parse(saved));
     }
+
     setIsLoaded(true);
   }, []);
 

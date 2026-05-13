@@ -60,25 +60,7 @@ export default function Sidebar({
   ];
 
   return (
-    <aside className="w-80 bg-[#080808] p-8 flex flex-col border-r border-white/5">
-      <div className="flex items-center gap-3 mb-12">
-        <div className="bg-[#2DD4BF] p-2 rounded-lg">
-          <svg
-            className="w-5 h-5 text-black"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="3"
-            viewBox="0 0 24 24"
-          >
-            <path d="M4 6h16M4 12h10M4 18h16" />
-          </svg>
-        </div>
-
-        <h1 className="text-xl font-bold text-white tracking-tight">
-          TaskFlow
-        </h1>
-      </div>
-
+    <aside className="w-80 bg-black p-8 flex flex-col border-r border-white/5">
       <nav className="flex-1">
         <p className="text-[10px] font-bold text-gray-600 uppercase tracking-widest mb-6 px-4">
           Categories

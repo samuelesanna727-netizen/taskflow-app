@@ -48,7 +48,7 @@ export default function CategoryButton({
         {name}
       </div>
 
-      <span className="text-[10px] opacity-40 font-mono">
+      <span className="text-[15px] opacity-40 font-mono">
         {count}
       </span>
     </button>

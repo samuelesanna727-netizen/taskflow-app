@@ -10,10 +10,11 @@ import {
   Category,
 } from "./context/TaskContext";
 
-import Sidebar from "@/app/components/sidebar/Sidebar";
-import StatBox from "@/app/components/stats/StatBox";
-import TaskFilters from "@/app/components/tasks/TaskFilters";
-import TaskList from "@/app/components/tasks/TaskList";
+import TaskInput from "./components/tasks/TaskInput";
+import Sidebar from "./components/sidebar/Sidebar";
+import TaskList from "./components/tasks/TaskList";
+import TaskFilters from "./components/tasks/TaskFilters";
+import StatBox from "./components/stats/StatBox";
 
 export default function Dashboard() {
   const {
@@ -31,6 +32,10 @@ export default function Dashboard() {
   const [category, setCategory] =
     useState<Category>("Work");
 
+  const [errorVisible, setErrorVisible] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+
   const [filter, setFilter] = useState<
     "All" | "Active" | "Completed"
   >("All");
@@ -38,13 +43,15 @@ export default function Dashboard() {
   const [selectedCategory, setSelectedCategory] =
     useState<Category | "All">("All");
 
+
+
   const filteredTasks = tasks.filter((t) => {
     const matchesStatus =
       filter === "All"
         ? true
         : filter === "Active"
-        ? !t.completed
-        : t.completed;
+          ? !t.completed
+          : t.completed;
 
     const matchesCategory =
       selectedCategory === "All"
@@ -66,18 +73,30 @@ export default function Dashboard() {
     percent:
       tasks.length > 0
         ? Math.round(
-            (tasks.filter((t) => t.completed).length /
-              tasks.length) *
-              100
-          )
+          (tasks.filter((t) => t.completed).length /
+            tasks.length) *
+          100
+        )
         : 0,
   };
 
   const handleAdd = () => {
-    if (!text.trim()) return;
+    if (!text.trim()) {
+      setError("Il task non può essere vuoto o solo spazi");
+      setErrorVisible(true);
 
-    addTask(text, priority, category);
+      setTimeout(() => {
+        setErrorVisible(false); // inizia fade out
+      }, 2500);
 
+      setTimeout(() => {
+        setError(null); // rimuove dal DOM
+      }, 3000);
+
+      return;
+    }
+
+    addTask(text.trim(), priority, category);
     setText("");
   };
 
@@ -116,21 +135,16 @@ export default function Dashboard() {
           />
         </div>
 
-        <div className="flex gap-2 mb-10">
-          <input
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            placeholder="Add task..."
-            className="bg-[#111] px-4 py-3 rounded-xl text-white outline-none"
-          />
-
-          <button
-            onClick={handleAdd}
-            className="bg-[#2DD4BF] text-black px-5 rounded-xl font-bold"
-          >
-            Add
-          </button>
-        </div>
+        <TaskInput
+          text={text}
+          setText={setText}
+          priority={priority}
+          setPriority={setPriority}
+          category={category}
+          setCategory={setCategory}
+          onAdd={handleAdd}
+          error={error}
+        />
 
         <div className="flex flex-col gap-6">
           <TaskFilters

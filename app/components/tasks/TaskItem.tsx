@@ -29,11 +29,10 @@ export default function TaskItem({
     <div className="bg-[#0D0D0D] border border-white/5 p-4 rounded-[1rem] flex items-center gap-6 group transition-all hover:bg-[#111111]">
       <button
         onClick={() => toggleTask(task.id)}
-        className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors ${
-          task.completed
+        className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors ${task.completed
             ? "bg-[#2DD4BF] border-[#2DD4BF]"
             : "border-gray-800"
-        }`}
+          }`}
       >
         {task.completed && (
           <svg
@@ -64,11 +63,10 @@ export default function TaskItem({
         ) : (
           <p
             onClick={() => setEditing(true)}
-            className={`text-sm lg:text-base font-bold tracking-tight truncate cursor-pointer hover:text-[#2DD4BF] transition-colors ${
-              task.completed
+            className={`text-sm lg:text-base font-bold tracking-tight truncate cursor-pointer hover:text-[#2DD4BF] transition-colors ${task.completed
                 ? "text-gray-700 line-through"
                 : "text-gray-200"
-            }`}
+              }`}
           >
             {task.text}
           </p>
