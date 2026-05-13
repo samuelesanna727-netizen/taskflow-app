@@ -28,7 +28,7 @@ export default function TaskInput({
   error,
 }: Props) {
   return (
-    <div className="bg-[#0A0A0A] p-4 rounded-[1.5rem] border border-white/5 mb-10">
+    <div className="bg-[#0A0A0A] p-4 rounded-[1rem] border border-white/5 mb-10">
 
       {/* ERROR */}
       {error && (
@@ -38,7 +38,7 @@ export default function TaskInput({
       )}
 
       {/* INPUT BOX */}
-      <div className={`bg-[#0D0D0D] p-2 rounded-[1.2rem] flex flex-col lg:flex-row gap-3 items-center border transition-all duration-200 ${error ? "border-red-500" : "border-white/5"
+      <div className={`bg-[#0D0D0D] p-2 rounded-[1rem] flex flex-col lg:flex-row gap-3 items-center border transition-all duration-200 ${error ? "border-red-500" : "border-white/5"
         }`}>
 
         {/* INPUT */}
@@ -63,7 +63,7 @@ export default function TaskInput({
         <select
           value={priority}
           onChange={(e) => setPriority(e.target.value as Priority)}
-          className="bg-black border border-white/5 hover:border-[#2DD4BF]/50 text-[11px] px-4 py-2.5 rounded-xl text-gray-400 font-bold outline-none"
+          className="bg-black border border-gray-600 hover:border-[#2DD4BF]/50 text-[11px] px-4 py-2.5 rounded-xl text-gray-400 font-bold outline-none"
         >
           <option value="I">High</option>
           <option value="II">Medium</option>
@@ -74,7 +74,7 @@ export default function TaskInput({
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value as Category)}
-          className="bg-black border border-white/5 hover:border-[#2DD4BF]/50 text-[11px] px-4 py-2.5 rounded-xl text-gray-400 font-bold outline-none"
+          className="bg-black border border border-gray-600 hover:border-[#2DD4BF]/50 text-[11px] px-4 py-2.5 rounded-xl text-gray-400 font-bold outline-none"
         >
           <option value="Personal">Personal</option>
           <option value="Work">Work</option>
@@ -86,7 +86,7 @@ export default function TaskInput({
         {/* BUTTON */}
         <button
           onClick={onAdd}
-          className="bg-[#2DD4BF] text-black px-6 py-2.5 rounded-xl font-bold text-sm hover:scale-[1.02] active:scale-95 transition"
+          className="bg-[#2DD4BF] text-black px-4 py-2 rounded-xl font-bold text-sm hover:scale-[1.02] active:scale-95 transition"
         >
           <span className="text-xl leading-none">+</span>
           <span className="ml-2">Add</span>

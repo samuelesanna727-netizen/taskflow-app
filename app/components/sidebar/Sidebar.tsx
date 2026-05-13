@@ -60,7 +60,7 @@ export default function Sidebar({
   ];
 
   return (
-    <aside className="w-80 bg-black p-8 flex flex-col border-r border-white/5">
+    <aside className="w-80 bg-black p-8 flex flex-col ">
       <nav className="flex-1">
         <p className="text-[10px] font-bold text-gray-600 uppercase tracking-widest mb-6 px-4">
           Categories
