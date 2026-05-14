@@ -99,7 +99,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row h-full w-full bg-black font-sans antialiased overflow-hidden">
+    <div className="flex flex-col lg:flex-row min-h-full lg:h-full w-full bg-black font-sans antialiased overflow-visible lg:overflow-hidden">
       
       <Sidebar
         tasks={tasks}
@@ -107,7 +107,7 @@ export default function Dashboard() {
         setSelectedCategory={setSelectedCategory}
       />
 
-      <main className="flex-1 flex flex-col p-4 sm:p-6 lg:p-12 overflow-y-auto min-h-0">
+      <main className="flex-1 flex flex-col p-4 sm:p-6 lg:p-12 overflow-visible lg:overflow-y-auto min-h-0">
         
         {/* STATS */}
         <div className="grid grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 mb-6 lg:mb-10">

@@ -11,7 +11,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="it" className={`${GeistSans.className} h-full`}>
-      <body className="h-screen overflow-hidden bg-black text-white flex flex-col">
+      <body className="h-screen lg:overflow-hidden overflow-y-auto bg-black text-white flex flex-col">
         
         {/* Linea superiore */}
         <div className="h-[2px] w-full bg-[#2DD4BF] shrink-0" />
@@ -47,7 +47,7 @@ export default function RootLayout({
           </header>
 
           {/* CONTENUTO */}
-          <div className="flex flex-1 w-full bg-black overflow-hidden">
+          <div className="flex flex-1 w-full bg-black lg:overflow-hidden overflow-visible min-h-0">
             <main
               className="
                 flex-1 flex flex-col overflow-y-auto
