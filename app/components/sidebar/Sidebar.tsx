@@ -65,7 +65,7 @@ export default function Sidebar({
       bg-black
       px-4 sm:px-6 lg:px-8
       py-4 lg:py-8
-      border-b lg:border-b-0 lg:border-r border-white/5
+      border-b lg:border-b-0 lg:border-r-0 xl
       overflow-x-auto lg:overflow-visible
       shrink-0
     ">

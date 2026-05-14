@@ -33,8 +33,8 @@ export default function TaskFilters({
     <div
       className="
         bg-[#111111]
-        p-1.5
-        rounded-2xl
+        p-1
+        rounded-xl
         w-full lg:w-fit
         flex
         border border-white/5

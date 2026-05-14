@@ -41,7 +41,7 @@ export default function TaskItem({
   };
 
   return (
-    <div className="bg-[#0D0D0D] border border-white/5 p-4 rounded-[1rem] flex items-center gap-6 group transition-all hover:bg-[#111111]">
+    <div className="bg-[#0D0D0D] border border-white/5 px-4 py-3 rounded-[1rem] flex items-center gap-3 group transition-all hover:bg-[#111111]">
       <button
         onClick={() => toggleTask(task.id)}
         className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors shrink-0 ${task.completed
