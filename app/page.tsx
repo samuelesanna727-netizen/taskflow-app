@@ -14,11 +14,10 @@ import TaskList from "./components/tasks/TaskList";
 import TaskFilters from "./components/tasks/TaskFilters";
 import StatBox from "./components/stats/StatBox";
 
-// Definizione dei pesi per la priorità (I è il più importante)
 const priorityWeight: Record<Priority, number> = {
-  "I": 1,
-  "II": 2,
-  "III": 3,
+  I: 1,
+  II: 2,
+  III: 3,
 };
 
 export default function Dashboard() {
@@ -34,21 +33,23 @@ export default function Dashboard() {
   const [priority, setPriority] = useState<Priority>("II");
   const [category, setCategory] = useState<Category>("Work");
 
-  const [errorVisible, setErrorVisible] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const [filter, setFilter] = useState<"All" | "Active" | "Completed">("All");
-  const [selectedCategory, setSelectedCategory] = useState<Category | "All">("All");
+  const [filter, setFilter] = useState<
+    "All" | "Active" | "Completed"
+  >("All");
 
-  // Logica di Filtraggio + ORDINAMENTO per priorità
+  const [selectedCategory, setSelectedCategory] =
+    useState<Category | "All">("All");
+
   const filteredTasks = tasks
     .filter((t) => {
       const matchesStatus =
         filter === "All"
           ? true
           : filter === "Active"
-            ? !t.completed
-            : t.completed;
+          ? !t.completed
+          : t.completed;
 
       const matchesCategory =
         selectedCategory === "All"
@@ -58,12 +59,14 @@ export default function Dashboard() {
       return matchesStatus && matchesCategory;
     })
     .sort((a, b) => {
-      // 1. Sposta i completati in fondo (opzionale, ma consigliato per UX)
       if (a.completed !== b.completed) {
         return a.completed ? 1 : -1;
       }
-      // 2. Ordina per priorità (I < II < III)
-      return priorityWeight[a.priority] - priorityWeight[b.priority];
+
+      return (
+        priorityWeight[a.priority] -
+        priorityWeight[b.priority]
+      );
     });
 
   const stats = {
@@ -73,15 +76,16 @@ export default function Dashboard() {
     percent:
       tasks.length > 0
         ? Math.round(
-          (tasks.filter((t) => t.completed).length / tasks.length) * 100
-        )
+            (tasks.filter((t) => t.completed).length /
+              tasks.length) *
+              100
+          )
         : 0,
   };
 
   const handleAdd = () => {
     if (!text.trim()) {
-      setError("Il task non può essere vuoto o solo spazi");
-
+      setError("Il task non può essere vuoto");
 
       setTimeout(() => {
         setError(null);
@@ -95,19 +99,41 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="flex h-full w-full bg-black font-sans antialiased">
+    <div className="flex flex-col lg:flex-row h-full w-full bg-black font-sans antialiased overflow-hidden">
+      
       <Sidebar
         tasks={tasks}
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
       />
 
-      <main className="flex-1 flex flex-col p-12 overflow-y-auto">
-        <div className="grid grid-cols-4 gap-6 mb-10">
-          <StatBox label="Total Tasks" value={stats.total} icon="tasks" />
-          <StatBox label="Completed" value={stats.completed} icon="check" />
-          <StatBox label="Active" value={stats.active} icon="circle" />
-          <StatBox label="Completion" value={`${stats.percent}%`} icon="trend" />
+      <main className="flex-1 flex flex-col p-4 sm:p-6 lg:p-12 overflow-y-auto min-h-0">
+        
+        {/* STATS */}
+        <div className="grid grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 mb-6 lg:mb-10">
+          <StatBox
+            label="Total Tasks"
+            value={stats.total}
+            icon="tasks"
+          />
+
+          <StatBox
+            label="Completed"
+            value={stats.completed}
+            icon="check"
+          />
+
+          <StatBox
+            label="Active"
+            value={stats.active}
+            icon="circle"
+          />
+
+          <StatBox
+            label="Completion"
+            value={`${stats.percent}%`}
+            icon="trend"
+          />
         </div>
 
         <TaskInput
@@ -121,15 +147,20 @@ export default function Dashboard() {
           error={error}
         />
 
-        <div className="flex flex-col gap-6">
-          <TaskFilters filter={filter} setFilter={setFilter} />
-
-          <TaskList
-            tasks={filteredTasks}
-            toggleTask={toggleTask}
-            deleteTask={deleteTask}
-            updateTask={updateTask}
+        <div className="flex flex-col gap-4 lg:gap-6 min-h-0">
+          <TaskFilters
+            filter={filter}
+            setFilter={setFilter}
           />
+
+          <div className="min-h-0 flex-1">
+            <TaskList
+              tasks={filteredTasks}
+              toggleTask={toggleTask}
+              deleteTask={deleteTask}
+              updateTask={updateTask}
+            />
+          </div>
         </div>
       </main>
     </div>

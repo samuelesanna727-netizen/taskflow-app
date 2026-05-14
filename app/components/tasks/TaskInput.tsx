@@ -48,10 +48,10 @@ export default function TaskInput({
   };
 
   // Classi comuni per altezza e arrotondamento
-  const commonStyles = "h-10 rounded-xl transition-all duration-300";
+  const commonStyles = "h-10 lg:h-10 h-12 rounded-lg lg:rounded-xl transition-all duration-300";
 
   return (
-    <div className="bg-[#0A0A0A] p-4 rounded-[1rem] border border-white/5 mb-10 relative">
+    <div className="bg-[#0A0A0A] p-5 lg:p-4 rounded-2xl lg:rounded-[1rem] border border-white/5 mb-10 relative">
       
       {(isPriorityOpen || isCategoryOpen) && (
         <div 
@@ -60,7 +60,7 @@ export default function TaskInput({
         />
       )}
 
-      <div className="flex flex-col lg:flex-row gap-3 items-center relative z-20">
+      <div className="flex flex-col lg:flex-row gap-4 lg:gap-3 items-stretch lg:items-center relative z-20">
 
         {/* INPUT BOX */}
         <div className={`flex-1 w-full bg-[#0D0D0D] border flex items-center ${commonStyles} ${
@@ -72,7 +72,7 @@ export default function TaskInput({
             onChange={(e) => setText(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleAddWithReset()}
             placeholder={error ? error : "Add a new task..."}
-            className={`w-full bg-transparent border-none outline-none px-6 text-sm font-medium ${
+            className={`w-full bg-transparent border-none outline-none px-6 text-[15px] font-medium ${
               error ? "placeholder:text-red-400/60 text-red-400" : "text-gray-300 placeholder:text-gray-700"
             }`}
           />
