@@ -15,7 +15,7 @@ export default function StatBox({ label, value, icon }: Props) {
   };
 
   return (
-    <div className="bg-[#0A0A0A] border border-white/5 p-7 rounded-2xl flex items-center gap-5 h-32 w-full transition-all hover:border-white/10">
+    <div className="bg-[#0A0A0A] border border-white/5 p-7 rounded-2xl flex items-center gap-5 h-25 w-full transition-all hover:border-white/10">
       <div className="w-12 h-12 rounded-full bg-[#2DD4BF]/10 flex items-center justify-center text-[#2DD4BF] shrink-0">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
           {icons[icon]}

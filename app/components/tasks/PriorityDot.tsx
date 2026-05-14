@@ -1,5 +1,3 @@
-// components/tasks/PriorityDot.tsx
-
 "use client";
 
 import { Priority } from "@/app/context/TaskContext";
